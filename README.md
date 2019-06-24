@@ -1,7 +1,13 @@
 # kubernetes-job-cleaner
 
-The Kubernetes job cleaner container is used to clean up completed kubernetes jobs older that a threshold (default is 100 seconds) using kubectl commands.
+This delpoys a kubernetes cronjob that monitors a namespace (default is
+`default`) and deletes jobs older than a threshold (default is `100 seconds`).
 
-To deploy the kubernetes cronjob issue
+The monitoring and deletions are performed using kubectl commands.
 
-`kubectl apply -f https://gitlab.com/precmed/deployment/kubernetes-job-cleaner/raw/master/cleaner-cron.yaml`
+To deploy the job cleaner issue
+
+`kubectl apply -f https://gitlab.com/precmed/deployment/kubernetes-job-cleaner/raw/master/job-cleaner-cron.yaml`
+
+To override the default values change the environmental variables in 
+job-cleaner-cron.yaml.
