@@ -1,7 +1,8 @@
 # kubernetes-job-cleaner
 
 This delpoys a kubernetes cronjob that monitors a namespace (default is
-`default`) and deletes jobs older than a threshold (default is `100 seconds`).
+`default`) and deletes completed jobs older than a threshold (default is 
+`100 seconds`).
 
 The monitoring and deletions are performed using kubectl commands.
 
