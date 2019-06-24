@@ -6,7 +6,7 @@ namespace=${NAMESPACE:-'default'}
 
 cleanup_threshold=${CLEANUP_THRESHOLD:-'100'}
 
-now_seconds=$(date +%s)
+now_seconds=$(coreutils --coreutils-prog=date +%s)
 
 completed_jobs=$(kubectl get jobs -n $namespace -o jsonpath='{.items[?(@.status.completionTime)].metadata.name}')
 
@@ -22,7 +22,7 @@ do
   
   completed_at=$(kubectl get job $job -n $namespace -o jsonpath='{.status.completionTime}')
   
-  started_seconds=$(date -d $completed_at +"%s")
+  started_seconds=$(coreutils --coreutils-prog=date -d $completed_at +"%s")
   
   completed_for_seconds=$(($now_seconds-$started_seconds))
 

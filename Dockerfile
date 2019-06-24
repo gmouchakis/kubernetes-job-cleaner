@@ -1,4 +1,4 @@
-FROM alpine:3.9 as build
+FROM alpine:3.9 as download
 
 WORKDIR /
 
@@ -10,7 +10,9 @@ RUN chmod +x ./kubectl
 
 FROM alpine:3.9
 
-COPY --from=build /kubectl /usr/local/bin/kubectl
+RUN apk --no-cache add coreutils
+
+COPY --from=download /kubectl /usr/local/bin/kubectl
 
 COPY cleanup.sh .
 
